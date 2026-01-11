@@ -2,9 +2,14 @@
 {
     internal class Program
     {
+        private static int currentScreen = 0;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var screen = new ScreenViewModel();
+
+            screen.Show();
         }
+
     }
 }
