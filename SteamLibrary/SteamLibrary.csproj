@@ -21,4 +21,8 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SteamLibrary.Data\SteamLibrary.Data.csproj" />
+  </ItemGroup>
+
 </Project>
