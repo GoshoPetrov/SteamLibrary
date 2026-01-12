@@ -1,4 +1,5 @@
 ﻿using SteamLibrary.Data;
+using SteamLibrary.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,13 @@ namespace SteamLibrary
     public class ScreenViewModel
     {
         public ScreenType CurrentScreen { get; set; }
+
+        private ApplicationDbContext _context { get; set; }
+
+        public ScreenViewModel(ApplicationDbContext context)
+        {
+            this._context = context;
+        }
 
         public void Show()
         {
@@ -75,7 +83,8 @@ namespace SteamLibrary
                         Password = password
                     });
 
-
+                    CurrentScreen = ScreenType.Library;
+                    return;
                 }
                 catch (Exception e)
                 {
@@ -173,8 +182,17 @@ namespace SteamLibrary
 
         private void CreateNewUser(UserDTO user)
         {
-            //TODO
-            throw new Exception("DB fail!");
+            User user1 = new User()
+            {
+                UserName = user.Username,
+                PasswordHash = user.Password,
+                Email = $"{user.Username}@example.com"
+            };
+
+            _context.Users.Add(user1);
+
+            _context.SaveChanges();
+           
         }
         private bool IsPasswordCorrect(UserDTO user)
         {

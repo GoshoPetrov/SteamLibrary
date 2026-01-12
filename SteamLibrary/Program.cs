@@ -26,6 +26,10 @@ namespace SteamLibrary
             using var scope = host.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
+            var viewModel = new ScreenViewModel(db);
+
+            viewModel.Show();
+
             //await db.Database.MigrateAsync();
         }
 
