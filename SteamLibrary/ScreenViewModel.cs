@@ -123,7 +123,7 @@ namespace SteamLibrary
                     }
                     else
                     {
-                        Console.WriteLine("Wrong password");
+                        Console.WriteLine("Wrong password ot username");
                     }
                 }
                 catch(Exception e)
@@ -196,13 +196,25 @@ namespace SteamLibrary
         }
         private bool IsPasswordCorrect(UserDTO user)
         {
-            //TODO
-            return true;
+            string username = user.Username;
+            string password = user.Password;
+
+            var result = _context.Users
+                .Where(a => a.UserName == username && a.PasswordHash == password)
+                .Select(a => new { a.UserName, a.PasswordHash })
+                .ToList();
+
+
+            return result.Count != 0;
         }
         private bool DoesUserExist(string username)
         {
-            //TODO
-            return false;
+            var result = _context.Users
+                .Where(a => a.UserName == username)
+                .Select(a => a.UserName)
+                .ToList();
+
+            return result.Count != 0;
         }
     }
 }
