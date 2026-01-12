@@ -22,6 +22,8 @@ namespace SteamLibrary
 
         private ApplicationDbContext _context { get; set; }
 
+        public string Guest { get; set; }
+
         public ScreenViewModel(ApplicationDbContext context)
         {
             this._context = context;
@@ -77,10 +79,34 @@ namespace SteamLibrary
                     Console.WriteLine("Enter your password: ");
                     string password = Console.ReadLine();
 
+                    Console.WriteLine("Access: 1-Administrator, 2-User, 3-Guest");
+                    string command = Console.ReadLine();
+
+                    string access = null;
+                    switch (command)
+                    {
+                        case "1":
+                            access = "Administrator";
+                            break;
+
+                        case "2":
+                            access = "User";
+                            break;
+
+                        case "3":
+                            access = "Guest";
+                            break;
+
+                        default:
+                            Console.WriteLine("Type 1, 2 or 3.");
+                            continue;
+                    }
+
                     CreateNewUser(new UserDTO()
                     {
                         Username = username,
-                        Password = password
+                        Password = password,
+                        Access = access
                     });
 
                     CurrentScreen = ScreenType.Library;
@@ -126,7 +152,7 @@ namespace SteamLibrary
                         Console.WriteLine("Wrong password ot username");
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine($"Error message: {e.Message}");
                 }
@@ -182,17 +208,28 @@ namespace SteamLibrary
 
         private void CreateNewUser(UserDTO user)
         {
+            var access = _context.Accesses.FirstOrDefault(a => a.Name == user.Access);
+            if (access == null)
+            {
+                access = new Data.Entities.Access()
+                {
+                    Name = user.Access
+                };
+                _context.Accesses.Add(access);
+            }
+
             User user1 = new User()
             {
                 UserName = user.Username,
                 PasswordHash = user.Password,
-                Email = $"{user.Username}@example.com"
+                Email = $"{user.Username}@example.com",
+                AccessId = access.Id,
             };
 
             _context.Users.Add(user1);
 
             _context.SaveChanges();
-           
+
         }
         private bool IsPasswordCorrect(UserDTO user)
         {

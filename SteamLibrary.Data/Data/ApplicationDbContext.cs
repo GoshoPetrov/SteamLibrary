@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SteamLibrary.Data.Entities;
 using SteamLibrary.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace SteamLibrary.Data
         }
 
         public DbSet<User> Users => Set<User>();
+        public DbSet<Access> Accesses => Set<Access>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,7 +38,20 @@ namespace SteamLibrary.Data
                 entity.Property(u => u.Email)
                       .IsRequired()
                       .HasMaxLength(256);
+
+                entity.Property(u => u.AccessId)
+                      .IsRequired();
             });
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Access)
+                .WithMany(a => a.Users)
+                .HasForeignKey(u => u.AccessId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Access>()
+                .HasIndex(a => a.Name)
+                .IsUnique();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SteamLibrary.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,6 +22,12 @@ namespace SteamLibrary.Entities
         [Required]
         [MaxLength(256)]
         public string Email { get; set; } = default!;
+
+        [Required]
+        public Guid AccessId { get; set; }
+
+        [ForeignKey(nameof(AccessId))]
+        public Access Access { get; set; } = default!;
 
         [Required]
         public string PasswordHash { get; set; } = default!;
