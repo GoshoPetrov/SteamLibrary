@@ -25,14 +25,13 @@ namespace SteamLibrary
                 })
                 .Build();
 
-            // Example usage
             using var scope = host.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
+            await db.Database.MigrateAsync();
+            DbSeeder.Seed(db);
+
             var viewModel = new ScreenViewModel(db);
-
-            //await db.Database.MigrateAsync();
-
             viewModel.Show();
 
         }
