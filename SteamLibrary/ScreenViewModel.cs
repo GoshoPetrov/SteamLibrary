@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace SteamLibrary
 {
+    /// <summary>
+    /// Represents the different screens that can be shown to the user
+    /// in the console UI.
+    /// </summary>
     public enum ScreenType
     {
         Login,
@@ -18,12 +22,22 @@ namespace SteamLibrary
         Unknown
     }
 
+    /// <summary>
+    /// View model responsible for driving the console screens and
+    /// handling user navigation and basic interactions.
+    /// </summary>
     public class ScreenViewModel
     {
+        /// <summary>
+        /// The currently active screen.
+        /// </summary>
         public ScreenType CurrentScreen { get; set; }
 
         private UserDTO? _currentUser { get; set; }
 
+        /// <summary>
+        /// Gets the name of the current user or "Anonymous" if no user is logged in.
+        /// </summary>
         public string CurrentUserName
         {
             get
@@ -33,6 +47,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Returns true if the current user has Administrator access.
+        /// </summary>
         public bool IsAdministrator
         {
             get
@@ -42,6 +59,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Returns true if the current user has User access.
+        /// </summary>
         public bool IsUser
         {
             get
@@ -51,6 +71,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Returns true when the current user is neither Administrator nor User.
+        /// </summary>
         public bool IsGuest
         {
             get
@@ -59,10 +82,17 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ScreenViewModel"/>.
+        /// </summary>
         public ScreenViewModel()
         {
         }
 
+        /// <summary>
+        /// Starts the main loop that displays screens and handles navigation.
+        /// This method blocks until the application is closed externally.
+        /// </summary>
         public void Show()
         {
             CurrentScreen = ScreenType.Unknown;
@@ -90,6 +120,9 @@ namespace SteamLibrary
 
         }
 
+        /// <summary>
+        /// Shows the registration screen where a new user can be created.
+        /// </summary>
         private void RegisterScreen()
         {
             while (true)
@@ -159,6 +192,9 @@ namespace SteamLibrary
 
         }
 
+        /// <summary>
+        /// Shows the login screen and authenticates a user.
+        /// </summary>
         private void LoginScreen()
         {
             while (true)
@@ -200,6 +236,10 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Shows the library screen, greets the user and dispatches to the
+        /// appropriate management screen based on access level.
+        /// </summary>
         private void LibraryScreen()
         {
             if (!string.IsNullOrWhiteSpace(CurrentUserName))
@@ -234,6 +274,9 @@ namespace SteamLibrary
             BrowseGamesScreen(ScreenType.Unknown);
         }
 
+        /// <summary>
+        /// Presents options for administrators to manage users.
+        /// </summary>
         private void ManageUsersScreen()
         {
             while (true)
@@ -266,6 +309,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Prompts for a username and deletes the matching user if found.
+        /// </summary>
         private void DeleteUserScreen()
         {
             while (true)
@@ -305,6 +351,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Presents game management options for regular users.
+        /// </summary>
         private void ManageGamesScreen()
         {
             while (true)
@@ -353,6 +402,11 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Shows browsing options for the games catalog. The optional
+        /// returnTo value controls which screen to go back to.
+        /// </summary>
+        /// <param name="returnTo">Screen to return to when exiting browse mode.</param>
         private void BrowseGamesScreen(ScreenType returnTo = ScreenType.Library)
         {
             while (true)
@@ -387,6 +441,9 @@ namespace SteamLibrary
 
 
 
+        /// <summary>
+        /// Displays the start screen with options to login, register or continue as guest.
+        /// </summary>
         private void StartScreen()
         {
             while (true)
@@ -422,6 +479,9 @@ namespace SteamLibrary
 
         }
 
+        /// <summary>
+        /// Exports the current database to a JSON file with the provided name.
+        /// </summary>
         private void ExportToJsonScreen()
         {
             while (true)
@@ -448,6 +508,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Imports database content from a JSON file and shows statistics after import.
+        /// </summary>
         private void ImportFromJsonScreen()
         {
             while (true)
@@ -481,6 +544,9 @@ namespace SteamLibrary
 
         //-------------------------------------------
 
+        /// <summary>
+        /// Prints all games currently available.
+        /// </summary>
         private void ShowGameList()
         {
             var games = Logic.LoadAllGames();
@@ -492,6 +558,10 @@ namespace SteamLibrary
 
         }
 
+        /// <summary>
+        /// Searches for games by an optional filter and displays the matches.
+        /// </summary>
+        /// <param name="filter">Optional search text to filter games by name.</param>
         private void SearchGame(string? filter)
         {
             var games = Logic.LoadAllGames(filter);
@@ -504,6 +574,9 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Shows basic statistics about the database contents.
+        /// </summary>
         private void ShowStatistic()
         {
             Console.WriteLine("Database has:");
@@ -514,12 +587,18 @@ namespace SteamLibrary
             }
         }
 
+        /// <summary>
+        /// Loads and lists all users optionally filtered by the provided string.
+        /// </summary>
         private void ListAllUsers(string filter = null)
         {
             var users = Logic.LoadAllUsers(filter);
             ShowUsersList(users, filter);
         }
 
+        /// <summary>
+        /// Displays a list of users and indicates how many matched the filter.
+        /// </summary>
         private void ShowUsersList(List<UserDTO> users, string filter)
         {
             if (!string.IsNullOrWhiteSpace(filter))
