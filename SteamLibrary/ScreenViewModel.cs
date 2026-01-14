@@ -107,7 +107,7 @@ namespace SteamLibrary
 
                 try
                 {
-                    if (DoesUserExist(username))
+                    if (Logic.DoesUserExist(_context, username))
                     {
                         Console.WriteLine("Username already taken.");
                         continue;
@@ -146,9 +146,9 @@ namespace SteamLibrary
                         Access = access
                     };
                     
-                    CreateNewUser(newUser);
+                    Logic.CreateNewUser(_context, newUser);
 
-                    _currentUser = IsPasswordCorrect(newUser);
+                    _currentUser = Logic.IsPasswordCorrect(_context, newUser);
 
                     CurrentScreen = ScreenType.Library;
                     return;
@@ -179,7 +179,7 @@ namespace SteamLibrary
 
                 try
                 {
-                    var user = IsPasswordCorrect(new UserDTO
+                    var user = Logic.IsPasswordCorrect(_context, new UserDTO
                     {
                         Username = username,
                         Password = password
@@ -368,70 +368,5 @@ namespace SteamLibrary
 
         //-------------------------------------------
 
-        private void CreateNewUser(UserDTO user)
-        {
-            var access = _context.Accesses.FirstOrDefault(a => a.Name == user.Access);
-            if (access == null)
-            {
-                access = new Data.Entities.Access()
-                {
-                    Name = user.Access
-                };
-                _context.Accesses.Add(access);
-            }
-
-            User user1 = new User()
-            {
-                UserName = user.Username,
-                PasswordHash = PasswordHash(user.Password),
-                Email = $"{user.Username}@example.com",
-                AccessId = access.Id,
-            };
-
-            _context.Users.Add(user1);
-
-            _context.SaveChanges();
-        }
-
-        private UserDTO? IsPasswordCorrect(UserDTO user)
-        {
-            string username = user.Username;
-            string password = user.Password;
-
-            string hash = PasswordHash(password);
-
-            var result = _context.Users
-                .Include(u => u.Access)
-                .Where(a => a.UserName == username && a.PasswordHash == hash)
-                .ToList();
-
-            if (result.Count == 0)
-            {
-                return null;
-            }
-
-            var loggedUser = result[0];
-            return new UserDTO()
-            {
-                Id = loggedUser.Id,
-                Username = loggedUser.UserName,
-                Access = loggedUser.Access.Name 
-            };
-        }
-        private bool DoesUserExist(string username)
-        {
-            var result = _context.Users
-                .Where(a => a.UserName == username)
-                .Select(a => a.UserName)
-                .ToList();
-
-            return result.Count != 0;
-        }
-
-        private string PasswordHash(string password)
-        {
-            //TODO: Compute password hash
-            return password;
-        }
     }
 }
