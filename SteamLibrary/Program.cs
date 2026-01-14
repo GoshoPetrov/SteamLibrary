@@ -16,15 +16,7 @@ namespace SteamLibrary
     {
         static void Main(string[] args)
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlite(@"Data Source=C:\Users\john2\source\repos\SteamLibrary\SteamLibrary\app.db")
-                .Options;
-            var db = new ApplicationDbContext(options);
-
-            db.Database.Migrate();
-            DbSeeder.Seed(db);
-
-            var viewModel = new ScreenViewModel(db);
+            var viewModel = new ScreenViewModel();
             viewModel.Show();
 
         }
@@ -46,7 +38,7 @@ namespace SteamLibrary
             await db.Database.MigrateAsync();
             DbSeeder.Seed(db);
 
-            var viewModel = new ScreenViewModel(db);
+            var viewModel = new ScreenViewModel();
             viewModel.Show();
 
         }

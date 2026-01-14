@@ -22,8 +22,6 @@ namespace SteamLibrary
     {
         public ScreenType CurrentScreen { get; set; }
 
-        private ApplicationDbContext _context { get; set; }
-
         private UserDTO? _currentUser { get; set; }
 
         public string CurrentUserName
@@ -61,9 +59,8 @@ namespace SteamLibrary
             }
         }
 
-        public ScreenViewModel(ApplicationDbContext context)
+        public ScreenViewModel()
         {
-            this._context = context;
         }
 
         public void Show()
@@ -107,7 +104,7 @@ namespace SteamLibrary
 
                 try
                 {
-                    if (Logic.DoesUserExist(_context, username))
+                    if (Logic.DoesUserExist(username))
                     {
                         Console.WriteLine("Username already taken.");
                         continue;
@@ -146,9 +143,9 @@ namespace SteamLibrary
                         Access = access
                     };
                     
-                    Logic.CreateNewUser(_context, newUser);
+                    Logic.CreateNewUser(newUser);
 
-                    _currentUser = Logic.IsPasswordCorrect(_context, newUser);
+                    _currentUser = Logic.IsPasswordCorrect(newUser);
 
                     CurrentScreen = ScreenType.Library;
                     return;
@@ -179,7 +176,7 @@ namespace SteamLibrary
 
                 try
                 {
-                    var user = Logic.IsPasswordCorrect(_context, new UserDTO
+                    var user = Logic.IsPasswordCorrect(new UserDTO
                     {
                         Username = username,
                         Password = password
@@ -281,7 +278,7 @@ namespace SteamLibrary
                     return;
                 }
 
-                var users = Logic.LoadAllUsers(_context, input);
+                var users = Logic.LoadAllUsers(input);
 
                 if (users.Count == 0)
                 {
@@ -297,7 +294,7 @@ namespace SteamLibrary
 
                 if (exactMatch != null)
                 {
-                    Logic.DeleteUser(_context, exactMatch.Id);
+                    Logic.DeleteUser(exactMatch.Id);
                     Console.WriteLine($"User \"{exactMatch.Username}\" was deleted.");
                     continue;
                 }
@@ -375,7 +372,7 @@ namespace SteamLibrary
                 switch (input)
                 {
                     case "1":
-                        //TODO:
+                        ShowGameList();
                         break;
                     case "2":
                         //TODO:
@@ -434,7 +431,7 @@ namespace SteamLibrary
 
                 try
                 {
-                    var jsonStr = ImportExport.ExportToJson(_context);
+                    var jsonStr = ImportExport.ExportToJson(Logic.GetContext());
                     File.WriteAllText(input, jsonStr);
 
                     Console.WriteLine("Done!");
@@ -461,7 +458,7 @@ namespace SteamLibrary
                 try
                 {
                     var jsonStr = File.ReadAllText(input);
-                    ImportExport.ImportFromJson(_context, jsonStr);
+                    ImportExport.ImportFromJson(Logic.GetContext(), jsonStr);
 
 
                     Console.WriteLine("Done!");
@@ -478,10 +475,20 @@ namespace SteamLibrary
 
         //-------------------------------------------
 
+        private void ShowGameList()
+        {
+            //var games = Logic.LoadAllGames();
+
+            //foreach (var game in games)
+            //{
+            //    Console.WriteLine($"{game.Name}");
+            //}
+        }
+
         private void ShowStatistic()
         {
             Console.WriteLine("Database has:");
-            var stat = Logic.CountRecords(_context);
+            var stat = Logic.CountRecords();
             foreach (var item in stat)
             {
                 Console.WriteLine($"{item.Key,-10}: {item.Value,7} records");
@@ -490,7 +497,7 @@ namespace SteamLibrary
 
         private void ListAllUsers(string filter = null)
         {
-            var users = Logic.LoadAllUsers(_context, filter);
+            var users = Logic.LoadAllUsers(filter);
             ShowUsersList(users, filter);
         }
 

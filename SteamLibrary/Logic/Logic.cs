@@ -11,8 +11,23 @@ namespace SteamLibrary
 {
     public static class Logic
     {
-        public static Dictionary<string, int> CountRecords(ApplicationDbContext context)
+        public static ApplicationDbContext GetContext()
         {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseSqlite(@"Data Source=app.db")
+                .Options;
+            var db = new ApplicationDbContext(options);
+
+            db.Database.Migrate();
+            DbSeeder.Seed(db);
+
+            return db;
+        }
+
+        public static Dictionary<string, int> CountRecords()
+        {
+            var context = GetContext();
+
             var result = new Dictionary<string, int>();
 
             result.Add("Users", context.Users.Count());
@@ -23,8 +38,10 @@ namespace SteamLibrary
             return result;
         }
 
-        public static void CreateNewUser(ApplicationDbContext context, UserDTO user)
+        public static void CreateNewUser(UserDTO user)
         {
+            var context = GetContext();
+
             var access = context.Accesses.FirstOrDefault(a => a.Name == user.Access);
             if (access == null)
             {
@@ -48,8 +65,10 @@ namespace SteamLibrary
             context.SaveChanges();
         }
 
-        public static List<UserDTO> LoadAllUsers(ApplicationDbContext context, string filter)
+        public static List<UserDTO> LoadAllUsers(string filter)
         {
+            var context = GetContext();
+
             var users = context.Users
                 .Include(u => u.Access)
                 .Where(u => string.IsNullOrEmpty(filter)
@@ -70,12 +89,14 @@ namespace SteamLibrary
             return result;
         }
 
-        public static UserDTO? IsPasswordCorrect(ApplicationDbContext context, UserDTO user)
+        public static UserDTO? IsPasswordCorrect(UserDTO user)
         {
             string username = user.Username;
             string password = user.Password;
 
             string hash = PasswordHash(password);
+
+            var context = GetContext();
 
             var result = context.Users
                 .Include(u => u.Access)
@@ -96,8 +117,10 @@ namespace SteamLibrary
             };
         }
 
-        public static bool DoesUserExist(ApplicationDbContext context, string username)
+        public static bool DoesUserExist(string username)
         {
+            var context = GetContext();
+
             var result = context.Users
                 .Where(a => a.UserName == username)
                 .Select(a => a.UserName)
@@ -112,8 +135,10 @@ namespace SteamLibrary
             return password;
         }
 
-        internal static void DeleteUser(ApplicationDbContext context, Guid id)
+        internal static void DeleteUser(Guid id)
         {
+            var context = GetContext();
+
             var user = context.Users.FirstOrDefault(a => a.Id == id);
             if (user != null)
             {
