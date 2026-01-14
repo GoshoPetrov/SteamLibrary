@@ -406,6 +406,7 @@ namespace SteamLibrary
                 }
                 else if (input == "3")
                 {
+                    _currentUser = null;
                     CurrentScreen = ScreenType.Library;
                     return;
                 }
@@ -477,12 +478,13 @@ namespace SteamLibrary
 
         private void ShowGameList()
         {
-            //var games = Logic.LoadAllGames();
+            var games = Logic.LoadAllGames();
 
-            //foreach (var game in games)
-            //{
-            //    Console.WriteLine($"{game.Name}");
-            //}
+            foreach (var game in games)
+            {
+                Console.WriteLine($"{game.Name, -30}, {game.Publisher}");
+            }
+
         }
 
         private void ShowStatistic()

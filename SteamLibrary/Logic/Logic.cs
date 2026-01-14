@@ -139,12 +139,36 @@ namespace SteamLibrary
         {
             var context = GetContext();
 
-            var user = context.Users.FirstOrDefault(a => a.Id == id);
+            var user = context.Users
+                .FirstOrDefault(a => a.Id == id);
+
             if (user != null)
             {
                 context.Users.Remove(user);
                 context.SaveChanges();
             }
+        }
+
+        public static List<GameDTO> LoadAllGames()
+        {
+            var context = GetContext();
+
+            var games = context.Games
+                .Include(g => g.Publisher)
+                .OrderBy(g => g.Title)
+                .ToList();
+
+            var result = new List<GameDTO>();
+            foreach (var game in games)
+            {
+                result.Add(new GameDTO()
+                {
+                    Name = game.Title,
+                    Publisher = game.Publisher.Name
+                });
+            }
+
+            return result;
         }
     }
 }

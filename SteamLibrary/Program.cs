@@ -16,6 +16,7 @@ namespace SteamLibrary
     {
         static void Main(string[] args)
         {
+
             var viewModel = new ScreenViewModel();
             viewModel.Show();
 
