@@ -1,4 +1,6 @@
-﻿using SteamLibrary.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SteamLibrary.Data;
+using SteamLibrary.Data.Entities;
 using SteamLibrary.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,42 @@ namespace SteamLibrary
 
         private ApplicationDbContext _context { get; set; }
 
-        public string Guest { get; set; }
+        private UserDTO? _currentUser { get; set; }
+
+        public string CurrentUserName
+        {
+            get
+            {
+                if (_currentUser == null) return "Anonymous";
+                return _currentUser.Username;
+            }
+        }
+
+        public bool IsAdministrator
+        {
+            get
+            {
+                return _currentUser != null
+                    && _currentUser.Access == "Administrator";
+            }
+        }
+
+        public bool IsUser
+        {
+            get
+            {
+                return _currentUser != null
+                    && _currentUser.Access == "User";
+            }
+        }
+
+        public bool IsGuest
+        {
+            get
+            {
+                return !IsAdministrator && !IsUser;
+            }
+        }
 
         public ScreenViewModel(ApplicationDbContext context)
         {
@@ -102,12 +139,16 @@ namespace SteamLibrary
                             continue;
                     }
 
-                    CreateNewUser(new UserDTO()
+                    var newUser = new UserDTO()
                     {
                         Username = username,
                         Password = password,
                         Access = access
-                    });
+                    };
+                    
+                    CreateNewUser(newUser);
+
+                    _currentUser = IsPasswordCorrect(newUser);
 
                     CurrentScreen = ScreenType.Library;
                     return;
@@ -138,12 +179,15 @@ namespace SteamLibrary
 
                 try
                 {
-                    if (IsPasswordCorrect(new UserDTO
+                    var user = IsPasswordCorrect(new UserDTO
                     {
                         Username = username,
                         Password = password
-                    }))
+                    });
+
+                    if (user != null)
                     {
+                        _currentUser = user;
                         CurrentScreen = ScreenType.Library;
                         return;
                     }
@@ -161,12 +205,131 @@ namespace SteamLibrary
 
         private void LibraryScreen()
         {
-            while (true)
+            if (!string.IsNullOrWhiteSpace(CurrentUserName))
             {
-                Console.WriteLine("Welcome to your library");
-                string game = Console.ReadLine();
+                Console.WriteLine($"Welcome, {CurrentUserName}!");
+            }
+            else
+            {
+                Console.WriteLine($"Welcome!");
             }
 
+            string access = "Guest";
+            if (IsAdministrator) access = "Administrator";
+            if (IsUser) access = "User";
+
+            Console.WriteLine($"Your access level is: {access}");
+            Console.WriteLine($"---------------------");
+
+            if (IsAdministrator)
+            {
+                ManageUsersScreen();
+                return;
+            }
+
+            if (IsUser)
+            {
+                ManageGamesScreen();
+                return;
+            }
+
+            // Guests are allowed to see the games catalog only
+            BrowseGamesScreen(ScreenType.Unknown);
+        }
+
+        private void ManageUsersScreen()
+        {
+            while (true)
+            {
+                Console.WriteLine(@"
+1. List all users
+2. Delete user
+");
+
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    CurrentScreen = ScreenType.Library;
+                    return;
+                }
+
+                switch (input)
+                {
+                    case "1":
+                        //TODO:
+                        break;
+
+                    case "2":
+                        //TODO:
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void ManageGamesScreen()
+        {
+            while (true)
+            {
+                Console.WriteLine(@"
+1. View games catalog
+2. Add game
+3. Delete game
+");
+
+                string input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input))
+                {
+                    CurrentScreen = ScreenType.Library;
+                    return;
+                }
+
+                switch (input)
+                {
+                    case "1":
+                        BrowseGamesScreen(ScreenType.Library);
+                        break;
+
+                    case "2":
+                        //TODO:
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void BrowseGamesScreen(ScreenType returnTo = ScreenType.Library)
+        {
+            while (true)
+            {
+                Console.WriteLine(@"
+1. List the available games
+2. Search by title
+");
+
+                string input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    CurrentScreen = returnTo;
+                    return;
+                }
+
+                switch (input)
+                {
+                    case "1":
+                        //TODO:
+                        break;
+                    case "2":
+                        //TODO:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void StartScreen()
@@ -182,7 +345,6 @@ namespace SteamLibrary
 
                 if (input == "1")
                 {
-                    //todo
                     CurrentScreen = ScreenType.Login;
                     return;
                 }
@@ -190,11 +352,11 @@ namespace SteamLibrary
                 {
                     CurrentScreen = ScreenType.Register;
                     return;
-                    //todo
                 }
                 else if (input == "3")
                 {
-                    //todo
+                    CurrentScreen = ScreenType.Library;
+                    return;
                 }
                 else
                 {
@@ -221,7 +383,7 @@ namespace SteamLibrary
             User user1 = new User()
             {
                 UserName = user.Username,
-                PasswordHash = user.Password,
+                PasswordHash = PasswordHash(user.Password),
                 Email = $"{user.Username}@example.com",
                 AccessId = access.Id,
             };
@@ -229,20 +391,32 @@ namespace SteamLibrary
             _context.Users.Add(user1);
 
             _context.SaveChanges();
-
         }
-        private bool IsPasswordCorrect(UserDTO user)
+
+        private UserDTO? IsPasswordCorrect(UserDTO user)
         {
             string username = user.Username;
             string password = user.Password;
 
+            string hash = PasswordHash(password);
+
             var result = _context.Users
-                .Where(a => a.UserName == username && a.PasswordHash == password)
-                .Select(a => new { a.UserName, a.PasswordHash })
+                .Include(u => u.Access)
+                .Where(a => a.UserName == username && a.PasswordHash == hash)
                 .ToList();
 
+            if (result.Count == 0)
+            {
+                return null;
+            }
 
-            return result.Count != 0;
+            var loggedUser = result[0];
+            return new UserDTO()
+            {
+                Id = loggedUser.Id,
+                Username = loggedUser.UserName,
+                Access = loggedUser.Access.Name 
+            };
         }
         private bool DoesUserExist(string username)
         {
@@ -252,6 +426,12 @@ namespace SteamLibrary
                 .ToList();
 
             return result.Count != 0;
+        }
+
+        private string PasswordHash(string password)
+        {
+            //TODO: Compute password hash
+            return password;
         }
     }
 }
