@@ -21,8 +21,9 @@ namespace SteamLibrary.Data
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Access> Accesses => Set<Access>();
-        public DbSet<Game> Games { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Game> Games => Set<Game>();
+        public DbSet<Publisher> Publishers => Set<Publisher>();
+        public DbSet<UserGame> UserGame => Set<UserGame>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -316,6 +316,8 @@ namespace SteamLibrary
 1. View games catalog
 2. Add game
 3. Delete game
+4. Export to JSON
+5. Import from JSON
 ");
 
                 string input = Console.ReadLine();
@@ -334,6 +336,19 @@ namespace SteamLibrary
                     case "2":
                         //TODO:
                         break;
+
+                    case "3":
+                        //TODO:
+                        break;
+
+                    case "4":
+                        ExportToJsonScreen();
+                        break;
+
+                    case "5":
+                        ImportFromJsonScreen();
+                        break;
+
 
                     default:
                         break;
@@ -405,7 +420,73 @@ namespace SteamLibrary
 
         }
 
+        private void ExportToJsonScreen()
+        {
+            while (true)
+            {
+                Console.WriteLine("Type the name of the json file:");
+
+                var input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return;
+                }
+
+                try
+                {
+                    var jsonStr = ImportExport.ExportToJson(_context);
+                    File.WriteAllText(input, jsonStr);
+
+                    Console.WriteLine("Done!");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
+        }
+
+        private void ImportFromJsonScreen()
+        {
+            while (true)
+            {
+                Console.WriteLine("Type the name of the json file to import:");
+
+                var input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return;
+                }
+
+                try
+                {
+                    var jsonStr = File.ReadAllText(input);
+                    ImportExport.ImportFromJson(_context, jsonStr);
+
+
+                    Console.WriteLine("Done!");
+
+                    ShowStatistic();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
+        }
+
         //-------------------------------------------
+
+        private void ShowStatistic()
+        {
+            Console.WriteLine("Database has:");
+            var stat = Logic.CountRecords(_context);
+            foreach (var item in stat)
+            {
+                Console.WriteLine($"{item.Key,-10}: {item.Value,7} records");
+            }
+        }
 
         private void ListAllUsers(string filter = null)
         {

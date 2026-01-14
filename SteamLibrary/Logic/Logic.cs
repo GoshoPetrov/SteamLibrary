@@ -11,6 +11,18 @@ namespace SteamLibrary
 {
     public static class Logic
     {
+        public static Dictionary<string, int> CountRecords(ApplicationDbContext context)
+        {
+            var result = new Dictionary<string, int>();
+
+            result.Add("Users", context.Users.Count());
+            result.Add("Games", context.Games.Count());
+            result.Add("Publishers", context.Publishers.Count());
+            result.Add("UserGame", context.UserGame.Count());
+
+            return result;
+        }
+
         public static void CreateNewUser(ApplicationDbContext context, UserDTO user)
         {
             var access = context.Accesses.FirstOrDefault(a => a.Name == user.Access);

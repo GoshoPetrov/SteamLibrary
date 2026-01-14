@@ -1,0 +1,1013 @@
+{
+  "exportDate": "2026-01-14T12:33:49.5752599Z",
+  "games": [
+    {
+      "id": "00c14791-2542-4022-bf49-cfd0c029c18f",
+      "title": "Game 6",
+      "description": "Description for Game 6",
+      "genre": "Action",
+      "price": 25.99,
+      "releaseDate": "2025-07-18",
+      "ageRating": 18,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "24ea33f5-e179-45da-952a-5d0dbf4066e2",
+        "name": "Publisher 7",
+        "location": "City 7"
+      },
+      "addedBy": {
+        "id": "7b10c889-691a-4227-803e-05eab5aca1b2",
+        "userName": "user7",
+        "email": "user7@example.com"
+      },
+      "users": [
+        {
+          "userId": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+          "userName": "user2",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 25.99
+        },
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 25.99
+        },
+        {
+          "userId": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+          "userName": "user5",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 25.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772418"
+    },
+    {
+      "id": "0713e567-150a-4792-a6b7-1026dbb7e1dd",
+      "title": "Game 2",
+      "description": "Description for Game 2",
+      "genre": "Action",
+      "price": 21.99,
+      "releaseDate": "2025-11-15",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "c28cd40e-04e1-4c11-aa11-114756a2f508",
+        "name": "Publisher 3",
+        "location": "City 3"
+      },
+      "addedBy": {
+        "id": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+        "userName": "user3",
+        "email": "user3@example.com"
+      },
+      "users": [
+        {
+          "userId": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+          "userName": "user2",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 21.99
+        },
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 21.99
+        },
+        {
+          "userId": "a9363165-3772-4125-b3c0-103e2910a3b9",
+          "userName": "user9",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 21.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.577239"
+    },
+    {
+      "id": "0790cb7b-4f6a-4f3d-8a5f-f4224f55b169",
+      "title": "Game 8",
+      "description": "Description for Game 8",
+      "genre": "Action",
+      "price": 27.99,
+      "releaseDate": "2025-05-19",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "7dc11af1-c1fe-46db-a5e9-a555e943969c",
+        "name": "Publisher 9",
+        "location": "City 9"
+      },
+      "addedBy": {
+        "id": "a9363165-3772-4125-b3c0-103e2910a3b9",
+        "userName": "user9",
+        "email": "user9@example.com"
+      },
+      "users": [
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 27.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 27.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772427"
+    },
+    {
+      "id": "0919b4b0-88c3-4e2c-b28f-9163b94d35ee",
+      "title": "Game 1",
+      "description": "Description for Game 1",
+      "genre": "RPG",
+      "price": 20.99,
+      "releaseDate": "2025-12-15",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "8d3624ba-a5be-4b05-88eb-6bef7e9ee4ac",
+        "name": "Publisher 2",
+        "location": "City 2"
+      },
+      "addedBy": {
+        "id": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+        "userName": "user2",
+        "email": "user2@example.com"
+      },
+      "users": [
+        {
+          "userId": "80288d69-3465-4c24-9efd-01f38a7065f9",
+          "userName": "user8",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 20.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 20.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772004"
+    },
+    {
+      "id": "1392fd34-3c63-4664-9736-ac3cd33de73f",
+      "title": "Game 15",
+      "description": "Description for Game 15",
+      "genre": "RPG",
+      "price": 34.99,
+      "releaseDate": "2024-10-21",
+      "ageRating": 18,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "0ee33139-cdb0-44cb-a760-c99e7af227a5",
+        "name": "Publisher 6",
+        "location": "City 6"
+      },
+      "addedBy": {
+        "id": "e8a0096f-9a81-4469-a027-09d954bd215d",
+        "userName": "user6",
+        "email": "user6@example.com"
+      },
+      "users": [
+        {
+          "userId": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+          "userName": "user4",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 34.99
+        },
+        {
+          "userId": "a9363165-3772-4125-b3c0-103e2910a3b9",
+          "userName": "user9",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 34.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772459"
+    },
+    {
+      "id": "1ac60dad-b16b-480a-af89-d9f48b7c709c",
+      "title": "Game 9",
+      "description": "Description for Game 9",
+      "genre": "RPG",
+      "price": 28.99,
+      "releaseDate": "2025-04-19",
+      "ageRating": 18,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "a5907f55-86f5-45c4-888d-f3820e6fd78b",
+        "name": "Publisher 10",
+        "location": "City 10"
+      },
+      "addedBy": {
+        "id": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+        "userName": "user10",
+        "email": "user10@example.com"
+      },
+      "users": [
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 28.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 28.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772431"
+    },
+    {
+      "id": "2c112856-b646-40e8-81f1-3a1dcb6fd6b7",
+      "title": "Game 3",
+      "description": "Description for Game 3",
+      "genre": "RPG",
+      "price": 22.99,
+      "releaseDate": "2025-10-16",
+      "ageRating": 18,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "0ea04824-7789-4038-a29e-da5b92269562",
+        "name": "Publisher 4",
+        "location": "City 4"
+      },
+      "addedBy": {
+        "id": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+        "userName": "user4",
+        "email": "user4@example.com"
+      },
+      "users": [
+        {
+          "userId": "80288d69-3465-4c24-9efd-01f38a7065f9",
+          "userName": "user8",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 22.99
+        },
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 22.99
+        },
+        {
+          "userId": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+          "userName": "user5",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 22.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772398"
+    },
+    {
+      "id": "474f1d1c-2691-4152-b1c2-b2aa212efa32",
+      "title": "Game 5",
+      "description": "Description for Game 5",
+      "genre": "RPG",
+      "price": 24.99,
+      "releaseDate": "2025-08-17",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "0ee33139-cdb0-44cb-a760-c99e7af227a5",
+        "name": "Publisher 6",
+        "location": "City 6"
+      },
+      "addedBy": {
+        "id": "e8a0096f-9a81-4469-a027-09d954bd215d",
+        "userName": "user6",
+        "email": "user6@example.com"
+      },
+      "users": [
+        {
+          "userId": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+          "userName": "user4",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 24.99
+        },
+        {
+          "userId": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+          "userName": "user5",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 24.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 24.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772407"
+    },
+    {
+      "id": "5c23e224-e864-432c-9ae9-82e9b7176474",
+      "title": "Game 16",
+      "description": "Description for Game 16",
+      "genre": "Action",
+      "price": 35.99,
+      "releaseDate": "2024-09-21",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "24ea33f5-e179-45da-952a-5d0dbf4066e2",
+        "name": "Publisher 7",
+        "location": "City 7"
+      },
+      "addedBy": {
+        "id": "7b10c889-691a-4227-803e-05eab5aca1b2",
+        "userName": "user7",
+        "email": "user7@example.com"
+      },
+      "users": [
+        {
+          "userId": "80288d69-3465-4c24-9efd-01f38a7065f9",
+          "userName": "user8",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 35.99
+        },
+        {
+          "userId": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+          "userName": "user5",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 35.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 35.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772475"
+    },
+    {
+      "id": "5e27d81f-cdad-4d0b-8afa-ea31801a7c7b",
+      "title": "Game 10",
+      "description": "Description for Game 10",
+      "genre": "Action",
+      "price": 29.99,
+      "releaseDate": "2025-03-20",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "13c52c29-b65c-4126-b432-c49032f3da74",
+        "name": "Publisher 1",
+        "location": "City 1"
+      },
+      "users": [
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 29.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 29.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 29.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772438"
+    },
+    {
+      "id": "5f566fc1-82d2-4711-a4a2-632becb2f37c",
+      "title": "Game 14",
+      "description": "Description for Game 14",
+      "genre": "Action",
+      "price": 33.99,
+      "releaseDate": "2024-11-20",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "79fb7615-2752-4eee-ac9b-50dac69454bb",
+        "name": "Publisher 5",
+        "location": "City 5"
+      },
+      "addedBy": {
+        "id": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+        "userName": "user5",
+        "email": "user5@example.com"
+      },
+      "users": [
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 33.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 33.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 33.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772455"
+    },
+    {
+      "id": "64e9cee9-7a32-4fdc-bddf-38d6b824f49f",
+      "title": "Game 12",
+      "description": "Description for Game 12",
+      "genre": "Action",
+      "price": 31.99,
+      "releaseDate": "2025-01-19",
+      "ageRating": 18,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "c28cd40e-04e1-4c11-aa11-114756a2f508",
+        "name": "Publisher 3",
+        "location": "City 3"
+      },
+      "addedBy": {
+        "id": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+        "userName": "user3",
+        "email": "user3@example.com"
+      },
+      "users": [
+        {
+          "userId": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+          "userName": "user4",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 31.99
+        },
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 31.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 31.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772446"
+    },
+    {
+      "id": "94afdeb1-70b8-42ea-b330-22895023287e",
+      "title": "Game 11",
+      "description": "Description for Game 11",
+      "genre": "RPG",
+      "price": 30.99,
+      "releaseDate": "2025-02-18",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "8d3624ba-a5be-4b05-88eb-6bef7e9ee4ac",
+        "name": "Publisher 2",
+        "location": "City 2"
+      },
+      "addedBy": {
+        "id": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+        "userName": "user2",
+        "email": "user2@example.com"
+      },
+      "users": [
+        {
+          "userId": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+          "userName": "user2",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 30.99
+        },
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 30.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 30.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772442"
+    },
+    {
+      "id": "9736c7fd-3dd2-472e-a1fa-455738f3d636",
+      "title": "Game 18",
+      "description": "Description for Game 18",
+      "genre": "Action",
+      "price": 37.99,
+      "releaseDate": "2024-07-23",
+      "ageRating": 18,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "7dc11af1-c1fe-46db-a5e9-a555e943969c",
+        "name": "Publisher 9",
+        "location": "City 9"
+      },
+      "addedBy": {
+        "id": "a9363165-3772-4125-b3c0-103e2910a3b9",
+        "userName": "user9",
+        "email": "user9@example.com"
+      },
+      "users": [
+        {
+          "userId": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+          "userName": "user4",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 37.99
+        },
+        {
+          "userId": "a9363165-3772-4125-b3c0-103e2910a3b9",
+          "userName": "user9",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 37.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772483"
+    },
+    {
+      "id": "a65d27b8-fafe-4b5f-ac76-658beee44ebb",
+      "title": "Game 4",
+      "description": "Description for Game 4",
+      "genre": "Action",
+      "price": 23.99,
+      "releaseDate": "2025-09-16",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "79fb7615-2752-4eee-ac9b-50dac69454bb",
+        "name": "Publisher 5",
+        "location": "City 5"
+      },
+      "addedBy": {
+        "id": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+        "userName": "user5",
+        "email": "user5@example.com"
+      },
+      "users": [
+        {
+          "userId": "80288d69-3465-4c24-9efd-01f38a7065f9",
+          "userName": "user8",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 23.99
+        },
+        {
+          "userId": "a9363165-3772-4125-b3c0-103e2910a3b9",
+          "userName": "user9",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 23.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 23.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772403"
+    },
+    {
+      "id": "ae080f82-f723-4b55-a205-859501ad3ae0",
+      "title": "Game 7",
+      "description": "Description for Game 7",
+      "genre": "RPG",
+      "price": 26.99,
+      "releaseDate": "2025-06-18",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "64879635-906a-430a-ab8e-55de723d46a8",
+        "name": "Publisher 8",
+        "location": "City 8"
+      },
+      "addedBy": {
+        "id": "80288d69-3465-4c24-9efd-01f38a7065f9",
+        "userName": "user8",
+        "email": "user8@example.com"
+      },
+      "users": [
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 26.99
+        },
+        {
+          "userId": "80288d69-3465-4c24-9efd-01f38a7065f9",
+          "userName": "user8",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 26.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 26.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772423"
+    },
+    {
+      "id": "b79cf697-5989-4aec-bde8-ebec75158919",
+      "title": "Game 13",
+      "description": "Description for Game 13",
+      "genre": "RPG",
+      "price": 32.99,
+      "releaseDate": "2024-12-20",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "0ea04824-7789-4038-a29e-da5b92269562",
+        "name": "Publisher 4",
+        "location": "City 4"
+      },
+      "addedBy": {
+        "id": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+        "userName": "user4",
+        "email": "user4@example.com"
+      },
+      "users": [
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 32.99
+        },
+        {
+          "userId": "a9363165-3772-4125-b3c0-103e2910a3b9",
+          "userName": "user9",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 32.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772449"
+    },
+    {
+      "id": "cbc60d95-b97b-44bf-ab88-e75e4f6198a1",
+      "title": "Game 20",
+      "description": "Description for Game 20",
+      "genre": "Action",
+      "price": 39.99,
+      "releaseDate": "2024-05-24",
+      "ageRating": 12,
+      "isMultiplayer": true,
+      "publisher": {
+        "id": "13c52c29-b65c-4126-b432-c49032f3da74",
+        "name": "Publisher 1",
+        "location": "City 1"
+      },
+      "users": [
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 39.99
+        },
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 39.99
+        },
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 39.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.577249"
+    },
+    {
+      "id": "cc04f5a7-8698-461d-949b-dee5375109b6",
+      "title": "Game 17",
+      "description": "Description for Game 17",
+      "genre": "RPG",
+      "price": 36.99,
+      "releaseDate": "2024-08-22",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "64879635-906a-430a-ab8e-55de723d46a8",
+        "name": "Publisher 8",
+        "location": "City 8"
+      },
+      "addedBy": {
+        "id": "80288d69-3465-4c24-9efd-01f38a7065f9",
+        "userName": "user8",
+        "email": "user8@example.com"
+      },
+      "users": [
+        {
+          "userId": "7b10c889-691a-4227-803e-05eab5aca1b2",
+          "userName": "user7",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 36.99
+        },
+        {
+          "userId": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+          "userName": "user3",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 36.99
+        },
+        {
+          "userId": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+          "userName": "user5",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": true,
+          "purchasePrice": 36.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772479"
+    },
+    {
+      "id": "d6586914-4dbf-4b7b-91b8-78ffe830f3a7",
+      "title": "Game 19",
+      "description": "Description for Game 19",
+      "genre": "RPG",
+      "price": 38.99,
+      "releaseDate": "2024-06-23",
+      "ageRating": 12,
+      "isMultiplayer": false,
+      "publisher": {
+        "id": "a5907f55-86f5-45c4-888d-f3820e6fd78b",
+        "name": "Publisher 10",
+        "location": "City 10"
+      },
+      "addedBy": {
+        "id": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+        "userName": "user10",
+        "email": "user10@example.com"
+      },
+      "users": [
+        {
+          "userId": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+          "userName": "user10",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 38.99
+        },
+        {
+          "userId": "e8a0096f-9a81-4469-a027-09d954bd215d",
+          "userName": "user6",
+          "addedDate": "2026-01-09 12:20:26",
+          "isFavorite": false,
+          "purchasePrice": 38.99
+        }
+      ],
+      "createdAt": "2026-01-14T12:20:26.5772486"
+    }
+  ],
+  "publishers": [
+    {
+      "id": "0ea04824-7789-4038-a29e-da5b92269562",
+      "name": "Publisher 4",
+      "location": "City 4",
+      "email": "publisher4@example.com",
+      "phone": "\u002B1-555-00004",
+      "foundedDate": "2012-01-14",
+      "createdBy": {
+        "id": "96dad6d0-6111-4edf-84e1-4817acaada9d",
+        "userName": "user5",
+        "email": "user5@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 3",
+        "Game 13"
+      ],
+      "createdAt": "2026-01-14T12:20:26.539948"
+    },
+    {
+      "id": "0ee33139-cdb0-44cb-a760-c99e7af227a5",
+      "name": "Publisher 6",
+      "location": "City 6",
+      "email": "publisher6@example.com",
+      "phone": "\u002B1-555-00006",
+      "foundedDate": "2010-01-14",
+      "createdBy": {
+        "id": "7b10c889-691a-4227-803e-05eab5aca1b2",
+        "userName": "user7",
+        "email": "user7@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 15",
+        "Game 5"
+      ],
+      "createdAt": "2026-01-14T12:20:26.539949"
+    },
+    {
+      "id": "13c52c29-b65c-4126-b432-c49032f3da74",
+      "name": "Publisher 1",
+      "location": "City 1",
+      "email": "publisher1@example.com",
+      "phone": "\u002B1-555-00001",
+      "foundedDate": "2015-01-14",
+      "createdBy": {
+        "id": "59bf5353-6b42-4546-a8dc-a6f8562e56ce",
+        "userName": "user2",
+        "email": "user2@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 10",
+        "Game 20"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5398371"
+    },
+    {
+      "id": "24ea33f5-e179-45da-952a-5d0dbf4066e2",
+      "name": "Publisher 7",
+      "location": "City 7",
+      "email": "publisher7@example.com",
+      "phone": "\u002B1-555-00007",
+      "foundedDate": "2009-01-14",
+      "createdBy": {
+        "id": "80288d69-3465-4c24-9efd-01f38a7065f9",
+        "userName": "user8",
+        "email": "user8@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 6",
+        "Game 16"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399494"
+    },
+    {
+      "id": "64879635-906a-430a-ab8e-55de723d46a8",
+      "name": "Publisher 8",
+      "location": "City 8",
+      "email": "publisher8@example.com",
+      "phone": "\u002B1-555-00008",
+      "foundedDate": "2008-01-14",
+      "createdBy": {
+        "id": "a9363165-3772-4125-b3c0-103e2910a3b9",
+        "userName": "user9",
+        "email": "user9@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 7",
+        "Game 17"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399498"
+    },
+    {
+      "id": "79fb7615-2752-4eee-ac9b-50dac69454bb",
+      "name": "Publisher 5",
+      "location": "City 5",
+      "email": "publisher5@example.com",
+      "phone": "\u002B1-555-00005",
+      "foundedDate": "2011-01-14",
+      "createdBy": {
+        "id": "e8a0096f-9a81-4469-a027-09d954bd215d",
+        "userName": "user6",
+        "email": "user6@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 14",
+        "Game 4"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399486"
+    },
+    {
+      "id": "7dc11af1-c1fe-46db-a5e9-a555e943969c",
+      "name": "Publisher 9",
+      "location": "City 9",
+      "email": "publisher9@example.com",
+      "phone": "\u002B1-555-00009",
+      "foundedDate": "2007-01-14",
+      "createdBy": {
+        "id": "d7e2dcbc-611e-4201-8446-504a3119e5f4",
+        "userName": "user10",
+        "email": "user10@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 8",
+        "Game 18"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399507"
+    },
+    {
+      "id": "8d3624ba-a5be-4b05-88eb-6bef7e9ee4ac",
+      "name": "Publisher 2",
+      "location": "City 2",
+      "email": "publisher2@example.com",
+      "phone": "\u002B1-555-00002",
+      "foundedDate": "2014-01-14",
+      "createdBy": {
+        "id": "927d0d8f-b5c0-4bf5-bfe6-69088f20b4db",
+        "userName": "user3",
+        "email": "user3@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 1",
+        "Game 11"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399467"
+    },
+    {
+      "id": "a5907f55-86f5-45c4-888d-f3820e6fd78b",
+      "name": "Publisher 10",
+      "location": "City 10",
+      "email": "publisher10@example.com",
+      "phone": "\u002B1-555-00010",
+      "foundedDate": "2006-01-14",
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 9",
+        "Game 19"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399514"
+    },
+    {
+      "id": "c28cd40e-04e1-4c11-aa11-114756a2f508",
+      "name": "Publisher 3",
+      "location": "City 3",
+      "email": "publisher3@example.com",
+      "phone": "\u002B1-555-00003",
+      "foundedDate": "2013-01-14",
+      "createdBy": {
+        "id": "647a7dac-4c3f-43e0-977d-ad66270c479e",
+        "userName": "user4",
+        "email": "user4@example.com"
+      },
+      "gameCount": 2,
+      "gameTitles": [
+        "Game 2",
+        "Game 12"
+      ],
+      "createdAt": "2026-01-14T12:20:26.5399475"
+    }
+  ]
+}
