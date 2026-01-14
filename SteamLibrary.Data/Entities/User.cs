@@ -13,7 +13,7 @@ namespace SteamLibrary.Entities
     public class User
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -24,7 +24,7 @@ namespace SteamLibrary.Entities
         public string Email { get; set; } = default!;
 
         [Required]
-        public Guid AccessId { get; set; }
+        public int AccessId { get; set; }
 
         [ForeignKey(nameof(AccessId))]
         public Access Access { get; set; } = default!;

@@ -473,7 +473,8 @@ namespace SteamLibrary
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}");
+                    Console.WriteLine($"Error: {e}");
+
                 }
             }
         }

@@ -9,10 +9,10 @@ namespace SteamLibrary.Data.Entities
 {
     public class UserGame
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public virtual User User { get; set; } = null!;
 
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
         public virtual Game Game { get; set; } = null!;
 
         public DateTime AddedDate { get; set; } = DateTime.UtcNow;

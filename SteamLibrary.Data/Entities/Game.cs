@@ -12,7 +12,7 @@ namespace SteamLibrary.Data.Entities
     public class Game
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -34,7 +34,7 @@ namespace SteamLibrary.Data.Entities
         public bool IsMultiplayer { get; set; }
 
         // Foreign key to Publisher
-        public Guid PublisherId { get; set; }
+        public int? PublisherId { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(PublisherId))]
@@ -48,7 +48,7 @@ namespace SteamLibrary.Data.Entities
         public DateTime? UpdatedAt { get; set; }
 
         // Relationship with User (who added the game)
-        public Guid? AddedByUserId { get; set; }
+        public int? AddedByUserId { get; set; }
         public virtual User? AddedByUser { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using SteamLibrary.Data;
 using SteamLibrary.Entities;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -16,6 +18,8 @@ namespace SteamLibrary
     {
         static void Main(string[] args)
         {
+            //var json = File.ReadAllText("C:\\Users\\john2\\source\\repos\\SteamLibrary\\SteamLibrary\\library.json");
+            //ImportExport.ImportFromJson(Logic.GetContext(), json);
 
             var viewModel = new ScreenViewModel();
             viewModel.Show();

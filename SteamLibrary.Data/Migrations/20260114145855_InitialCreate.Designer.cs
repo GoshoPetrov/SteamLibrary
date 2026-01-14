@@ -8,11 +8,11 @@ using SteamLibrary.Data;
 
 #nullable disable
 
-namespace SteamLibrary.Migrations
+namespace SteamLibrary.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260114081105_AddGameAndPublisher")]
-    partial class AddGameAndPublisher
+    [Migration("20260114145855_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,9 @@ namespace SteamLibrary.Migrations
 
             modelBuilder.Entity("SteamLibrary.Data.Entities.Access", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -41,12 +41,12 @@ namespace SteamLibrary.Migrations
 
             modelBuilder.Entity("SteamLibrary.Data.Entities.Game", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("AddedByUserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("AddedByUserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("AgeRating")
                         .HasColumnType("INTEGER");
@@ -54,7 +54,7 @@ namespace SteamLibrary.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -71,8 +71,8 @@ namespace SteamLibrary.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("PublisherId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("PublisherId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("TEXT");
@@ -98,17 +98,17 @@ namespace SteamLibrary.Migrations
 
             modelBuilder.Entity("SteamLibrary.Data.Entities.Publisher", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<Guid?>("CreatedByUserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -145,16 +145,16 @@ namespace SteamLibrary.Migrations
 
             modelBuilder.Entity("SteamLibrary.Data.Entities.UserGame", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("IsFavorite")
                         .HasColumnType("INTEGER");
@@ -171,12 +171,12 @@ namespace SteamLibrary.Migrations
 
             modelBuilder.Entity("SteamLibrary.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("AccessId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("AccessId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
@@ -218,8 +218,7 @@ namespace SteamLibrary.Migrations
                     b.HasOne("SteamLibrary.Data.Entities.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("AddedByUser");
 

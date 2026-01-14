@@ -22,17 +22,17 @@ namespace SteamLibrary
             {
             new Access
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 Name = "Administrator"
             },
             new Access
             {
-                Id = Guid.NewGuid(),
+                Id = 2,
                 Name = "User"
             },
             new Access
             {
-                Id = Guid.NewGuid(),
+                Id = 3,
                 Name = "Guest"
             }
         };
@@ -60,7 +60,7 @@ namespace SteamLibrary
             var users = Enumerable.Range(1, 10)
                 .Select(i => new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = i,
                     UserName = $"user{i}",
                     Email = $"user{i}@example.com",
                     PasswordHash = $"HASHED_PASSWORD_{i}",
@@ -79,7 +79,7 @@ namespace SteamLibrary
             var publishers = Enumerable.Range(1, 10)
                 .Select(i => new Publisher
                 {
-                    Id = Guid.NewGuid(),
+                    Id = i,
                     Name = $"Publisher {i}",
                     Location = $"City {i}",
                     Email = $"publisher{i}@example.com",
@@ -104,7 +104,7 @@ namespace SteamLibrary
 
                     return new Game
                     {
-                        Id = Guid.NewGuid(),
+                        Id = i,
                         Title = $"Game {i}",
                         Description = $"Description for Game {i}",
                         Genre = i % 2 == 0 ? "Action" : "RPG",

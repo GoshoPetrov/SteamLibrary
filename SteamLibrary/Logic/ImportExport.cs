@@ -115,7 +115,7 @@ namespace SteamLibrary
             {
                 foreach (var p in publishersElement.EnumerateArray())
                 {
-                    var publisherId = p.GetProperty("id").GetGuid();
+                    var publisherId = p.GetProperty("id").GetInt32();
 
                     var publisher = context.Publishers
                         .Include(x => x.Games)
@@ -147,7 +147,7 @@ namespace SteamLibrary
                     if (p.TryGetProperty("createdBy", out var createdByProp) &&
                         createdByProp.ValueKind != JsonValueKind.Null)
                     {
-                        var userId = createdByProp.GetProperty("id").GetGuid();
+                        var userId = createdByProp.GetProperty("id").GetInt32();
 
                         var user = context.Users.FirstOrDefault(u => u.Id == userId);
 
@@ -165,7 +165,7 @@ namespace SteamLibrary
             {
                 foreach (var g in gamesElement.EnumerateArray())
                 {
-                    var gameId = g.GetProperty("id").GetGuid();
+                    var gameId = g.GetProperty("id").GetInt32();
 
                     var game = context.Games
                         .Include(x => x.Users)
@@ -199,7 +199,7 @@ namespace SteamLibrary
                     if (g.TryGetProperty("publisher", out var publisherProp) &&
                         publisherProp.ValueKind != JsonValueKind.Null)
                     {
-                        var publisherId = publisherProp.GetProperty("id").GetGuid();
+                        var publisherId = publisherProp.GetProperty("id").GetInt32();
                         var publisher = context.Publishers.FirstOrDefault(p => p.Id == publisherId);
                         game.Publisher = publisher;
                     }
@@ -208,7 +208,7 @@ namespace SteamLibrary
                     if (g.TryGetProperty("addedBy", out var addedByProp) &&
                         addedByProp.ValueKind != JsonValueKind.Null)
                     {
-                        var userId = addedByProp.GetProperty("id").GetGuid();
+                        var userId = addedByProp.GetProperty("id").GetInt32();
 
                         var user = context.Users.FirstOrDefault(u => u.Id == userId);
                         game.AddedByUser = user;
@@ -221,7 +221,7 @@ namespace SteamLibrary
 
                         foreach (var ug in usersProp.EnumerateArray())
                         {
-                            var userId = ug.GetProperty("userId").GetGuid();
+                            var userId = ug.GetProperty("userId").GetInt32();
 
                             var user = context.Users.FirstOrDefault(u => u.Id == userId);
 

@@ -11,7 +11,7 @@ namespace SteamLibrary.Data.Entities
     public class Publisher
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -38,7 +38,7 @@ namespace SteamLibrary.Data.Entities
         public DateTime? UpdatedAt { get; set; }
 
         // Relationship with User (if publishers are managed by users)
-        public Guid? CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public virtual User? CreatedByUser { get; set; }
     }
 }

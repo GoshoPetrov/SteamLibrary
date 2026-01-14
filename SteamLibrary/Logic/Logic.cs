@@ -135,7 +135,7 @@ namespace SteamLibrary
             return password;
         }
 
-        internal static void DeleteUser(Guid id)
+        internal static void DeleteUser(int id)
         {
             var context = GetContext();
 
