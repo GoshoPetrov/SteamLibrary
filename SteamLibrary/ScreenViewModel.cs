@@ -375,13 +375,17 @@ namespace SteamLibrary
                         ShowGameList();
                         break;
                     case "2":
-                        //TODO:
+                        Console.WriteLine("Enter game name here: ");
+                        string game = Console.ReadLine();
+                        SearchGame(game);
                         break;
                     default:
                         break;
                 }
             }
         }
+
+
 
         private void StartScreen()
         {
@@ -485,6 +489,18 @@ namespace SteamLibrary
                 Console.WriteLine($"{game.Name, -30}, {game.Publisher}");
             }
 
+        }
+
+        private void SearchGame(string? filter)
+        {
+            var games = Logic.LoadAllGames(filter);
+
+            Console.WriteLine($"{games.Count} match filter {filter}");
+
+            foreach (var game in games)
+            {
+                Console.WriteLine($"{game.Name,-30}, {game.Publisher}");
+            }
         }
 
         private void ShowStatistic()

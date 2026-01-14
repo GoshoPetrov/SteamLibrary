@@ -149,12 +149,14 @@ namespace SteamLibrary
             }
         }
 
-        public static List<GameDTO> LoadAllGames()
+        public static List<GameDTO> LoadAllGames(string filter = null)
         {
             var context = GetContext();
 
             var games = context.Games
                 .Include(g => g.Publisher)
+                .Where(g => string.IsNullOrEmpty(filter)
+                    || g.Title.ToLower().Contains(filter.ToLower()))
                 .OrderBy(g => g.Title)
                 .ToList();
 
