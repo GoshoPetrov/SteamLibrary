@@ -260,12 +260,51 @@ namespace SteamLibrary
                         break;
 
                     case "2":
-                        //TODO:
+                        DeleteUserScreen();
                         break;
 
                     default:
                         break;
                 }
+            }
+        }
+
+        private void DeleteUserScreen()
+        {
+            while (true)
+            {
+                Console.WriteLine("Type the name of the user to delete:");
+                var input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return;
+                }
+
+                var users = Logic.LoadAllUsers(_context, input);
+
+                if (users.Count == 0)
+                {
+                    Console.WriteLine($"Count not find user \"{input}\"");
+                    continue;
+                }
+
+                var exactMatch = users.FirstOrDefault(a => a.Username == input);
+                if (users.Count == 1)
+                {
+                    exactMatch = users[0];
+                }
+
+                if (exactMatch != null)
+                {
+                    Logic.DeleteUser(_context, exactMatch.Id);
+                    Console.WriteLine($"User \"{exactMatch.Username}\" was deleted.");
+                    continue;
+                }
+
+                ShowUsersList(users, input);
+                Console.WriteLine("Type the name more precisely.");
+
             }
         }
 
@@ -371,11 +410,15 @@ namespace SteamLibrary
         private void ListAllUsers(string filter = null)
         {
             var users = Logic.LoadAllUsers(_context, filter);
+            ShowUsersList(users, filter);
+        }
 
+        private void ShowUsersList(List<UserDTO> users, string filter)
+        {
             if (!string.IsNullOrWhiteSpace(filter))
             {
                 Console.WriteLine($"{users.Count} users match \"{filter}\"");
-            } 
+            }
             else
             {
                 Console.WriteLine($"{users.Count} users");

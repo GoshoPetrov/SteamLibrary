@@ -100,5 +100,14 @@ namespace SteamLibrary
             return password;
         }
 
+        internal static void DeleteUser(ApplicationDbContext context, Guid id)
+        {
+            var user = context.Users.FirstOrDefault(a => a.Id == id);
+            if (user != null)
+            {
+                context.Users.Remove(user);
+                context.SaveChanges();
+            }
+        }
     }
 }
