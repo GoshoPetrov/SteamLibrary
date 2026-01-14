@@ -14,7 +14,22 @@ namespace SteamLibrary
 
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseSqlite(@"Data Source=C:\Users\john2\source\repos\SteamLibrary\SteamLibrary\app.db")
+                .Options;
+            var db = new ApplicationDbContext(options);
+
+            db.Database.Migrate();
+            DbSeeder.Seed(db);
+
+            var viewModel = new ScreenViewModel(db);
+            viewModel.Show();
+
+        }
+
+        static async Task MainAlt(string[] args)
         {
             using IHost host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
