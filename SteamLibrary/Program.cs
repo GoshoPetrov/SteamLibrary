@@ -31,9 +31,10 @@ namespace SteamLibrary
 
             var viewModel = new ScreenViewModel(db);
 
+            //await db.Database.MigrateAsync();
+
             viewModel.Show();
 
-            //await db.Database.MigrateAsync();
         }
 
 

@@ -1,20 +1,54 @@
-﻿using System;
+﻿using SteamLibrary.Entities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SteamLibrary.Entities;
 
 namespace SteamLibrary.Data.Entities
 {
-    internal class Game
+    public class Game
     {
-        public string Title { get; set; }
+        [Key]
+        public Guid Id { get; set; }
 
-        public double Size { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string Title { get; set; } = string.Empty;
 
-        public int DalyPlayes { get; set; }
+        [MaxLength(500)]
+        public string? Description { get; set; }
 
-        public User User { get; set; }
+        [MaxLength(50)]
+        public string? Genre { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price { get; set; }
+
+        public DateTime ReleaseDate { get; set; }
+
+        public int? AgeRating { get; set; }
+
+        public bool IsMultiplayer { get; set; }
+
+        // Foreign key to Publisher
+        public Guid PublisherId { get; set; }
+
+        // Navigation properties
+        [ForeignKey(nameof(PublisherId))]
+        public virtual Publisher Publisher { get; set; } = null!;
+
+        // Many-to-many with Users (if users can own/favorite games)
+        public virtual ICollection<UserGame> Users { get; set; } = new List<UserGame>();
+
+        // Audit properties
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+
+        // Relationship with User (who added the game)
+        public Guid? AddedByUserId { get; set; }
+        public virtual User? AddedByUser { get; set; }
     }
 }

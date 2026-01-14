@@ -21,6 +21,8 @@ namespace SteamLibrary.Data
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Access> Accesses => Set<Access>();
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,15 +45,107 @@ namespace SteamLibrary.Data
                       .IsRequired();
             });
 
+            modelBuilder.Entity<Access>(entity =>
+            {
+                entity.HasIndex(a => a.Name)
+                      .IsUnique();
+
+                entity.Property(a => a.Name)
+                      .IsRequired()
+                      .HasMaxLength(50);
+            });
+
+            // Publisher configuration
+            modelBuilder.Entity<Publisher>(entity =>
+            {
+                entity.HasIndex(p => p.Name)
+                      .IsUnique();
+
+                entity.Property(p => p.Name)
+                      .IsRequired()
+                      .HasMaxLength(100);
+
+                entity.Property(p => p.Location)
+                      .HasMaxLength(200);
+
+                entity.Property(p => p.Email)
+                      .HasMaxLength(100);
+
+                entity.Property(p => p.Phone)
+                      .HasMaxLength(20);
+
+                entity.Property(p => p.CreatedAt)
+                      .HasDefaultValueSql("GETUTCDATE()");
+            });
+
+            // Game configuration
+            modelBuilder.Entity<Game>(entity =>
+            {
+                entity.HasIndex(g => g.Title);
+
+                entity.Property(g => g.Title)
+                      .IsRequired()
+                      .HasMaxLength(100);
+
+                entity.Property(g => g.Description)
+                      .HasMaxLength(500);
+
+                entity.Property(g => g.Genre)
+                      .HasMaxLength(50);
+
+                entity.Property(g => g.Price)
+                      .HasPrecision(18, 2);
+
+                entity.Property(g => g.CreatedAt)
+                      .HasDefaultValueSql("GETUTCDATE()");
+            });
+
+            // UserGame join entity configuration
+            modelBuilder.Entity<UserGame>(entity =>
+            {
+                entity.HasKey(ug => new { ug.UserId, ug.GameId });
+
+                entity.HasOne(ug => ug.User)
+                      .WithMany(u => u.Games)  // User.Games should be ICollection<UserGame>
+                      .HasForeignKey(ug => ug.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(ug => ug.Game)
+                      .WithMany(g => g.Users)  // Game.Users should be ICollection<UserGame>
+                      .HasForeignKey(ug => ug.GameId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(ug => ug.AddedDate)
+                      .HasDefaultValueSql("GETUTCDATE()");
+            });
+
+            // User -> Access relationship
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Access)
                 .WithMany(a => a.Users)
                 .HasForeignKey(u => u.AccessId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Access>()
-                .HasIndex(a => a.Name)
-                .IsUnique();
+            // Game -> Publisher relationship
+            modelBuilder.Entity<Game>()
+                .HasOne(g => g.Publisher)
+                .WithMany(p => p.Games)
+                .HasForeignKey(g => g.PublisherId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Game -> AddedByUser relationship
+            modelBuilder.Entity<Game>()
+                .HasOne(g => g.AddedByUser)
+                .WithMany(u => u.AddedGames)
+                .HasForeignKey(g => g.AddedByUserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Publisher -> CreatedByUser relationship
+            modelBuilder.Entity<Publisher>()
+                .HasOne(p => p.CreatedByUser)
+                .WithMany(u => u.CreatedPublishers)
+                .HasForeignKey(p => p.CreatedByUserId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
