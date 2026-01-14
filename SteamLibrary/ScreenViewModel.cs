@@ -256,7 +256,7 @@ namespace SteamLibrary
                 switch (input)
                 {
                     case "1":
-                        //TODO:
+                        ListAllUsers(null);
                         break;
 
                     case "2":
@@ -368,5 +368,23 @@ namespace SteamLibrary
 
         //-------------------------------------------
 
+        private void ListAllUsers(string filter = null)
+        {
+            var users = Logic.LoadAllUsers(_context, filter);
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                Console.WriteLine($"{users.Count} users match \"{filter}\"");
+            } 
+            else
+            {
+                Console.WriteLine($"{users.Count} users");
+            }
+
+            foreach (var user in users)
+            {
+                Console.WriteLine($"{user.Username,-20}, {user.Access,-15}");
+            }
+        }
     }
 }

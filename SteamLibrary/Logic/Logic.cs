@@ -36,6 +36,28 @@ namespace SteamLibrary
             context.SaveChanges();
         }
 
+        public static List<UserDTO> LoadAllUsers(ApplicationDbContext context, string filter)
+        {
+            var users = context.Users
+                .Include(u => u.Access)
+                .Where(u => string.IsNullOrEmpty(filter)
+                    || u.UserName.ToLower().Contains(filter.ToLower()))
+                .ToList();
+
+            var result = new List<UserDTO>();
+            foreach (var user in users)
+            {
+                result.Add(new UserDTO()
+                {
+                    Id = user.Id,
+                    Username = user.UserName,
+                    Access = user.Access.Name
+                });
+            }
+
+            return result;
+        }
+
         public static UserDTO? IsPasswordCorrect(ApplicationDbContext context, UserDTO user)
         {
             string username = user.Username;
@@ -61,6 +83,7 @@ namespace SteamLibrary
                 Access = loggedUser.Access.Name
             };
         }
+
         public static bool DoesUserExist(ApplicationDbContext context, string username)
         {
             var result = context.Users
