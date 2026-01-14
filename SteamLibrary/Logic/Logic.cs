@@ -132,6 +132,8 @@ namespace SteamLibrary
         public static string PasswordHash(string password)
         {
             //TODO: Compute password hash
+            // SECURITY WARNING: This is not a secure password hashing method.
+            // In a real application, you should use a secure password hashing algorithm like Argon2 or scrypt.
             return password;
         }
 
