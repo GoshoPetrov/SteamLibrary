@@ -12,7 +12,7 @@ namespace SteamLibrary.Data.Entities
     public class Access
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }

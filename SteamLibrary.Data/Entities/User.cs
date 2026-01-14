@@ -13,7 +13,7 @@ namespace SteamLibrary.Entities
     public class User
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -24,7 +24,7 @@ namespace SteamLibrary.Entities
         public string Email { get; set; } = default!;
 
         [Required]
-        public Guid AccessId { get; set; }
+        public int AccessId { get; set; }
 
         [ForeignKey(nameof(AccessId))]
         public Access Access { get; set; } = default!;
@@ -35,5 +35,18 @@ namespace SteamLibrary.Entities
         public bool IsActive { get; set; } = true;
 
         public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+
+        
+        // Many-to-many with Games (users can own/favorite games)
+        public virtual ICollection<UserGame> Games { get; set; } = new List<UserGame>();
+
+        
+        // One-to-many: Users can add multiple games
+        public virtual ICollection<Game> AddedGames { get; set; } = new List<Game>();
+
+        
+        // One-to-many: Users can create multiple publishers
+        public virtual ICollection<Publisher> CreatedPublishers { get; set; } = new List<Publisher>();
+
     }
 }

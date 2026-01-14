@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SteamLibrary.Data
+namespace SteamLibrary
 {
-    internal class UserDTO
+    public class UserDTO
     {
+        public int Id { get; set; }
+
         public string Username { get; set; }
 
         public string Password { get; set; }

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using SteamLibrary.Data;
 using SteamLibrary.Entities;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -14,7 +16,17 @@ namespace SteamLibrary
 
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
+        {
+            //var json = File.ReadAllText("C:\\Users\\john2\\source\\repos\\SteamLibrary\\SteamLibrary\\library.json");
+            //ImportExport.ImportFromJson(Logic.GetContext(), json);
+
+            var viewModel = new ScreenViewModel();
+            viewModel.Show();
+
+        }
+
+        static async Task MainAlt(string[] args)
         {
             using IHost host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
@@ -25,15 +37,15 @@ namespace SteamLibrary
                 })
                 .Build();
 
-            // Example usage
             using var scope = host.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            var viewModel = new ScreenViewModel(db);
+            await db.Database.MigrateAsync();
+            DbSeeder.Seed(db);
 
+            var viewModel = new ScreenViewModel();
             viewModel.Show();
 
-            //await db.Database.MigrateAsync();
         }
 
 
